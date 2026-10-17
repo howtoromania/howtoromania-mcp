@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "howtoromania": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://api.howtoromania.io/mcp",
+        "--header",
+        "Authorization:Bearer ${HTR_API_KEY}"
+      ],
+      "env": {
+        "HTR_API_KEY": "htr_demo"
+      }
+    }
+  }
+}

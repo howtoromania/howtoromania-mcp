@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "howtoromania": {
+      "url": "https://api.howtoromania.io/mcp",
+      "headers": {
+        "Authorization": "Bearer htr_demo"
+      }
+    }
+  }
+}
