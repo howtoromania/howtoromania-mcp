@@ -160,6 +160,10 @@ claude mcp add --transport http howtoromania https://api.howtoromania.io/mcp \
   --header "Authorization: Bearer htr_demo"
 ```
 
+### Agent Plugins / Cursor plugin
+
+This repo is also a plugin following the [Open Plugins / Agent Plugins](https://open-plugins.com) standard: [`plugin.json`](plugin.json) + [`mcp.json`](mcp.json) (remote server), [`.mcp.json`](.mcp.json) and [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) for Cursor, and a skill in [`skills/romanian-official-data`](skills/romanian-official-data/SKILL.md) that tells agents which tool to use. The bundled config uses the demo key; swap in your own key after install.
+
 ### REST
 
 ```bash
