@@ -3,7 +3,7 @@ name: romanian-official-data
 description: Use the HowToRomania MCP tools for Romanian companies (CUI/VAT lookup, financials, representatives, KYB risk, court cases), RO e-Factura invoices (validate, generate, parse, PDF) and Romanian legislation in force. Use when a task mentions a Romanian company, CUI/CIF, RO VAT id, ANAF, ONRC, e-Factura/UBL, or a Romanian law, code or article.
 ---
 
-# Romanian official data (HowToRomania)
+# Romanian public data (HowToRomania)
 
 Pick the cheapest tool that answers the question. Credits per successful call in brackets; 1 credit = €0.005, errors are free.
 
