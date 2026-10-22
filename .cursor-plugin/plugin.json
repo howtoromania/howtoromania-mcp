@@ -2,7 +2,7 @@
   "name": "howtoromania",
   "displayName": "HowToRomania",
   "version": "0.5.0",
-  "description": "Romania, readable by agents. Official Romanian data over remote MCP: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force.",
+  "description": "Romania, readable by agents. Romanian public data over remote MCP: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force.",
   "author": {
     "name": "HowToRomania",
     "email": "hello@howtoromania.io"

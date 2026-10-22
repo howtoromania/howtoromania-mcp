@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "howtoromania",
   "version": "0.5.0",
-  "description": "Romania, readable by agents. Official Romanian data over remote MCP: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force. Pay per call, 100 free credits.",
+  "description": "Romania, readable by agents. Romanian public data over remote MCP: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force. Pay per call, 100 free credits.",
   "author": {
     "name": "HowToRomania",
     "email": "hello@howtoromania.io",

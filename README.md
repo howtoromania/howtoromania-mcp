@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT"></a>
 </p>
 
-Official Romanian data for AI agents: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force. Remote MCP server + REST API. Pay per call, 100 free credits.
+Romanian public data for AI agents: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force. Remote MCP server + REST API. Pay per call, 100 free credits.
 
 This repository holds the public docs, client configs and registry metadata. The server is hosted; there is nothing to install or run.
 
@@ -33,10 +33,10 @@ This repository holds the public docs, client configs and registry metadata. The
 | `get_company_risk_report` | KYB in one call: status + financials + court cases + registry, score 0-100 with explained flags | 8 |
 | `get_company_court_cases` | Cases where the company is a party (portal.just.ro), summary + list | 3 |
 | `get_court_case` | One case by number: parties, hearings, outcomes, appeals | 1 |
-| `validate_efactura` | ANAF official CIUS-RO validator + local checks, with rule codes | 1 |
+| `validate_efactura` | ANAF's public CIUS-RO validation service + local checks, with rule codes | 1 |
 | `generate_efactura` | CIUS-RO UBL invoice from simple JSON; parties auto-filled from CUI; ANAF-validated | 2 |
 | `parse_efactura` | UBL Invoice/CreditNote XML → clean English JSON | 1 |
-| `efactura_to_pdf` | ANAF official PDF rendering of an e-Factura XML | 1 |
+| `efactura_to_pdf` | e-Factura XML to PDF via ANAF's public PDF service | 1 |
 | `search_legislation` | Find acts by citation (`Legea 31/1990`) or title words | 1 |
 | `get_legal_act` | Current consolidated text, split by article | 1 |
 | `get_legal_article` | One article in force + dated amendment notes | 1 |
