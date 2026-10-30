@@ -1,19 +1,19 @@
 ---
-name: romanian-official-data
+name: romanian-public-data
 description: Use the HowToRomania MCP tools for Romanian companies (CUI/VAT lookup, financials, representatives, KYB risk, court cases), RO e-Factura invoices (validate, generate, parse, PDF) and Romanian legislation in force. Use when a task mentions a Romanian company, CUI/CIF, RO VAT id, ANAF, ONRC, e-Factura/UBL, or a Romanian law, code or article.
 ---
 
 # Romanian public data (HowToRomania)
 
-Pick the cheapest tool that answers the question. Credits per successful call in brackets; 1 credit = €0.005, errors are free.
+Pick the cheapest tool that answers the question. Credits per successful call in brackets; 1 credit = €0.005, errors, not-found and source outages (e.g. ANAF unreachable) are not billed; a partial risk report is billed in full. BNR rates tools (get_bnr_exchange_rate, get_robor, get_ircc) are free.
 
 ## Companies (input: CUI, digits, optional `RO` prefix)
 
 - Is it real / active / VAT-registered, legal name and address → `lookup_company` (1)
-- Who can sign, CAEN codes, registry status → `get_company_representatives` (2)
-- Turnover, profit, employees over years → `get_company_financials` (5)
-- Litigation, insolvency → `get_company_court_cases` (3), then `get_court_case` (1) for one case number
-- Full due diligence / KYB in one call → `get_company_risk_report` (8). Do not also call the individual tools it already covers.
+- Who can sign, CAEN codes, registry status → `get_company_representatives` (5)
+- Turnover, profit, employees over years → `get_company_financials` (3)
+- Litigation, insolvency → `get_company_court_cases` (15), then `get_court_case` (1) for one case number
+- Full due diligence / KYB in one call → `get_company_risk_report` (30). Do not also call the individual tools it already covers.
 
 ## e-Factura (RO CIUS-RO, UBL 2.1)
 
@@ -35,4 +35,4 @@ Known ids: Codul fiscal 171282, Codul muncii 41627, Codul civil 175630, Codul de
 
 - Cite the source (ANAF, ONRC, portal.just.ro, legislatie.just.ro) and the article/act id in answers.
 - Consolidated legal text is informational; only Monitorul Oficial is authentic. Risk scores are informational, not credit advice.
-- The bundled config uses the public demo key `htr_demo` (20 calls/day per IP, 1-credit tools only). On HTTP 402 or a demo-key restriction, tell the user to get a free key (100 credits): `POST https://api.howtoromania.io/v1/keys {"email":"..."}` and put it in the `Authorization: Bearer` header.
+- The bundled config uses the public demo key `htr_demo` (20 calls/day per IP, only lookup_company, get_court_case, validate_efactura, parse_efactura, search_legislation, get_legal_article, get_new_legal_acts). On HTTP 402 or a demo-key restriction, tell the user to get a free key (100 credits): `POST https://api.howtoromania.io/v1/keys {"email":"...","accept_terms":true}` and put it in the `Authorization: Bearer` header.

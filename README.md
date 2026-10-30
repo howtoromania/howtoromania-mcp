@@ -19,22 +19,22 @@ This repository holds the public docs, client configs and registry metadata. The
 | MCP endpoint (Streamable HTTP) | `https://api.howtoromania.io/mcp` |
 | Auth | `Authorization: Bearer <key>` |
 | REST / OpenAPI | `https://api.howtoromania.io/openapi.json` |
-| Demo key | `htr_demo` (20 calls/day per IP, 1-credit services only) |
+| Demo key | `htr_demo` (20 calls/day per IP, on a subset of tools; see below) |
 
 ## Services and prices
 
-1 credit = €0.005. Billed only on success; errors and not-found are free.
+1 credit = €0.005 at the smallest pack. Credits are charged per successful call. Errors, not-found and source outages (e.g. ANAF unreachable) are not billed. A risk report with some sections unavailable is billed in full. BNR rates tools are free.
 
 | Tool | What it returns | Credits |
 |---|---|---:|
 | `lookup_company` | ANAF registry data by CUI/VAT: name, address, status, VAT, e-Factura, BNR EUR/RON rate | 1 |
-| `get_company_financials` | Up to 5 years of filed accounts + ratios (RON) | 5 |
-| `get_company_representatives` | Trade-register status, CAEN codes, legal representatives (ONRC) | 2 |
-| `get_company_risk_report` | KYB in one call: status + financials + court cases + registry, score 0-100 with explained flags | 8 |
-| `get_company_court_cases` | Cases where the company is a party (portal.just.ro), summary + list | 3 |
+| `get_company_financials` | Up to 5 years of filed accounts + ratios (RON) | 3 |
+| `get_company_representatives` | Trade-register status, CAEN codes, legal representatives (ONRC) | 5 |
+| `get_company_risk_report` | KYB in one call: status + financials + court cases + registry, score 0-100 with explained flags (one charge covers all sections) | 30 |
+| `get_company_court_cases` | Cases where the company is a party (portal.just.ro), summary + list | 15 |
 | `get_court_case` | One case by number: parties, hearings, outcomes, appeals | 1 |
-| `validate_efactura` | ANAF's public CIUS-RO validation service + local checks, with rule codes | 1 |
-| `generate_efactura` | CIUS-RO UBL invoice from simple JSON; parties auto-filled from CUI; ANAF-validated | 2 |
+| `validate_efactura` | ANAF's public CIUS-RO validation service + local checks, with rule codes; not billed if ANAF is unreachable | 1 |
+| `generate_efactura` | CIUS-RO UBL invoice from simple JSON; parties auto-filled from CUI; validated with ANAF's public validation service; not billed if ANAF is unreachable | 2 |
 | `parse_efactura` | UBL Invoice/CreditNote XML → clean English JSON | 1 |
 | `efactura_to_pdf` | e-Factura XML to PDF via ANAF's public PDF service | 1 |
 | `search_legislation` | Find acts by citation (`Legea 31/1990`) or title words | 1 |
@@ -42,6 +42,9 @@ This repository holds the public docs, client configs and registry metadata. The
 | `get_legal_article` | One article in force + dated amendment notes | 1 |
 | `get_legal_act_history` | Consolidation dates and dated amendments per article | 2 |
 | `get_new_legal_acts` | Acts in force since a date (max 35 days) | 1 |
+| `get_bnr_exchange_rate` | BNR RON reference rate on a date, or a daily series (bnr.ro) | 0 (free, no key) |
+| `get_robor` | ROBOR fixing on a date, or a daily series | 0 (free, no key) |
+| `get_ircc` | IRCC quarterly/daily values | 0 (free, no key) |
 
 ### Credit packs
 
@@ -58,7 +61,7 @@ Every new key gets **100 free credits**. Out of credits → HTTP 402 with checko
 ```bash
 curl -X POST https://api.howtoromania.io/v1/keys \
   -H "content-type: application/json" \
-  -d '{"email":"you@example.com"}'
+  -d '{"email":"you@example.com","accept_terms":true}'
 # → {"apiKey":"htr_..."}   (shown once)
 ```
 
@@ -162,7 +165,7 @@ claude mcp add --transport http howtoromania https://api.howtoromania.io/mcp \
 
 ### Agent Plugins / Cursor plugin
 
-This repo is also a plugin following the [Open Plugins / Agent Plugins](https://open-plugins.com) standard: [`plugin.json`](plugin.json) + [`mcp.json`](mcp.json) (remote server), [`.mcp.json`](.mcp.json) and [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) for Cursor, and a skill in [`skills/romanian-official-data`](skills/romanian-official-data/SKILL.md) that tells agents which tool to use. The bundled config uses the demo key; swap in your own key after install.
+This repo is also a plugin following the [Open Plugins / Agent Plugins](https://open-plugins.com) standard: [`plugin.json`](plugin.json) + [`mcp.json`](mcp.json) (remote server), [`.mcp.json`](.mcp.json) and [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) for Cursor, and a skill in [`skills/romanian-public-data`](skills/romanian-public-data/SKILL.md) that tells agents which tool to use. The bundled config uses the demo key; swap in your own key after install.
 
 ### REST
 
@@ -172,14 +175,14 @@ curl -H "x-api-key: htr_demo" https://api.howtoromania.io/v1/company/14399840
 
 ## Example prompts
 
-- "Before we sign with supplier RO14399840, check it's active, VAT-registered, and summarize risk flags." → `get_company_risk_report` (8)
-- "List the legal representatives of CUI 14399840 and their roles." → `get_company_representatives` (2)
+- "Before we sign with supplier RO14399840, check it's active, VAT-registered, and summarize risk flags." → `get_company_risk_report` (30)
+- "List the legal representatives of CUI 14399840 and their roles." → `get_company_representatives` (5)
 - "ANAF rejected this XML. Which rules fail and how do I fix them?" → `validate_efactura` (1)
 - "What VAT rates apply in Romania today per Codul fiscal art. 291, and when did they last change?" → `get_legal_article` (1) + `get_legal_act_history` (2)
 
 ## Listed on
 
-- Official MCP Registry: `io.howtoromania/api` ([server.json](server.json))
+- MCP Registry: `io.howtoromania/api` ([server.json](server.json))
 - Smithery: https://smithery.ai/servers/ipa-netot/howtoromania
 - Glama: https://glama.ai/mcp/connectors/io.howtoromania/api
 
