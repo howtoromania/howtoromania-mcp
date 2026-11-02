@@ -46,7 +46,7 @@ This repository holds the public docs, client configs and registry metadata. The
 | `get_bnr_exchange_rate` | BNR RON reference rate on a date, or a daily series (bnr.ro) | 0 (free, no key) |
 | `get_robor` | ROBOR fixing on a date, or a daily series | 0 (free, no key) |
 | `get_ircc` | IRCC quarterly/daily values | 0 (free, no key) |
-| `check_identifier_format` | Local checks only: CUI and IBAN checksums, Reg. Com. format, name normalization, invoice arithmetic. Does not check that the company exists. 60/hour, 300/day per IP | 0 (free, no key) |
+| `check_identifier_format` | Local checks only: CUI and IBAN checksums, Reg. Com. format, name normalization, invoice arithmetic. Does not check that the company exists. The last digit of new-format Reg. Com. numbers is not verified. Rate-limited per IP | 0 (free, no key) |
 
 ### Credit packs
 
