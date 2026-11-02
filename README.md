@@ -19,7 +19,7 @@ This repository holds the public docs, client configs and registry metadata. The
 | MCP endpoint (Streamable HTTP) | `https://api.howtoromania.io/mcp` |
 | Auth | `Authorization: Bearer <key>` |
 | REST / OpenAPI | `https://api.howtoromania.io/openapi.json` |
-| Demo key | `htr_demo` (20 calls/day per IP, on a subset of tools; see below) |
+| Demo key | `htr_demo` (limited daily calls per IP, on a subset of tools; see below) |
 
 ## Services and prices
 
@@ -67,7 +67,7 @@ curl -X POST https://api.howtoromania.io/v1/keys \
 # → {"apiKey":"htr_..."}   (shown once)
 ```
 
-No signup needed to try: use the public demo key `htr_demo` (20 calls/day per IP; `lookup_company`, `get_court_case`, `validate_efactura`, `parse_efactura`, `search_legislation`, `get_legal_article`, `get_new_legal_acts`).
+No signup needed to try: use the public demo key `htr_demo` (limited daily calls per IP; `lookup_company`, `get_court_case`, `validate_efactura`, `parse_efactura`, `search_legislation`, `get_legal_article`, `get_new_legal_acts`).
 
 ## Connect
 

@@ -36,4 +36,4 @@ Known ids: Codul fiscal 171282, Codul muncii 41627, Codul civil 175630, Codul de
 
 - Cite the source (ANAF, ONRC, portal.just.ro, legislatie.just.ro) and the article/act id in answers.
 - Consolidated legal text is informational; only Monitorul Oficial is authentic. Risk scores are informational, not credit advice.
-- The bundled config uses the public demo key `htr_demo` (20 calls/day per IP, only lookup_company, get_court_case, validate_efactura, parse_efactura, search_legislation, get_legal_article, get_new_legal_acts). On HTTP 402 or a demo-key restriction, tell the user to get a free key (100 credits): `POST https://api.howtoromania.io/v1/keys {"email":"...","accept_terms":true}` and put it in the `Authorization: Bearer` header.
+- The bundled config uses the public demo key `htr_demo` (limited daily calls per IP, only lookup_company, get_court_case, validate_efactura, parse_efactura, search_legislation, get_legal_article, get_new_legal_acts). On HTTP 402 or a demo-key restriction, tell the user to get a free key (100 credits): `POST https://api.howtoromania.io/v1/keys {"email":"...","accept_terms":true}` and put it in the `Authorization: Bearer` header.

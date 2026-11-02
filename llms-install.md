@@ -17,7 +17,7 @@ curl -X POST https://api.howtoromania.io/v1/keys \
 
 The response is `{"apiKey":"htr_..."}`. It is shown only once; store it in the config below. Each key includes 100 free credits.
 
-If the user does not want to register yet, use the public demo key `htr_demo` (20 calls/day per IP, 1-credit tools only).
+If the user does not want to register yet, use the public demo key `htr_demo` (limited daily calls per IP, selected tools only; get a free key for more).
 
 ## 2. Add the server to Cline
 
