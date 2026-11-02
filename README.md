@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT"></a>
 </p>
 
-Romanian public data for AI agents: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force. Remote MCP server + REST API. Pay per call, 100 free credits.
+Romanian public data for AI agents: companies (ANAF, ONRC), financials, court cases, KYB risk, validation of extracted company data, e-Factura and legislation in force. Remote MCP server + REST API. Pay per call, 100 free credits.
 
 This repository holds the public docs, client configs and registry metadata. The server is hosted; there is nothing to install or run.
 
@@ -33,6 +33,7 @@ This repository holds the public docs, client configs and registry metadata. The
 | `get_company_risk_report` | KYB in one call: status + financials + court cases + registry, score 0-100 with explained flags (one charge covers all sections) | 30 |
 | `get_company_court_cases` | Cases where the company is a party (portal.just.ro), summary + list | 15 |
 | `get_court_case` | One case by number: parties, hearings, outcomes, appeals | 1 |
+| `validate_extracted_company_data` | Checks company data an AI extracted from an invoice or contract (CUI, name, Reg. Com., VAT and company status, address, IBAN, optional legal representative) against public sources (ANAF, ONRC): verdict per field + confidence (pass / review / reject). Not a KYC/AML check; a valid IBAN does not prove account ownership | 2 (+5 with legal representative, +1 with invoice block) |
 | `validate_efactura` | ANAF's public CIUS-RO validation service + local checks, with rule codes; not billed if ANAF is unreachable | 1 |
 | `generate_efactura` | CIUS-RO UBL invoice from simple JSON; parties auto-filled from CUI; validated with ANAF's public validation service; not billed if ANAF is unreachable | 2 |
 | `parse_efactura` | UBL Invoice/CreditNote XML → clean English JSON | 1 |
@@ -45,6 +46,7 @@ This repository holds the public docs, client configs and registry metadata. The
 | `get_bnr_exchange_rate` | BNR RON reference rate on a date, or a daily series (bnr.ro) | 0 (free, no key) |
 | `get_robor` | ROBOR fixing on a date, or a daily series | 0 (free, no key) |
 | `get_ircc` | IRCC quarterly/daily values | 0 (free, no key) |
+| `check_identifier_format` | Local checks only: CUI and IBAN checksums, Reg. Com. format, name normalization, invoice arithmetic. Does not check that the company exists. 60/hour, 300/day per IP | 0 (free, no key) |
 
 ### Credit packs
 

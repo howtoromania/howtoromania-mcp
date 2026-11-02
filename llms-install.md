@@ -58,6 +58,6 @@ Call `lookup_company` with `{"cui": "14399840"}`. It should return the company n
 
 ## Notes
 
-- 15 tools: companies, financials, representatives, risk report, court cases, e-Factura (validate/generate/parse/PDF), legislation.
+- 20 tools: companies, financials, representatives, risk report, court cases, validation of extracted company data, e-Factura (validate/generate/parse/PDF), legislation, plus free BNR rates, ROBOR, IRCC and identifier format checks.
 - 1 credit = €0.005; errors are not billed. Balance: `GET https://api.howtoromania.io/v1/me`.
 - Docs: https://howtoromania.io · Contact: hello@howtoromania.io

@@ -14,6 +14,7 @@ Pick the cheapest tool that answers the question. Credits per successful call in
 - Turnover, profit, employees over years → `get_company_financials` (3)
 - Litigation, insolvency → `get_company_court_cases` (15), then `get_court_case` (1) for one case number
 - Full due diligence / KYB in one call → `get_company_risk_report` (30). Do not also call the individual tools it already covers.
+- Check data extracted from an invoice or contract before saving or paying → `validate_extracted_company_data` (2; +5 with legalRepresentative, +1 with invoice). Format-only check, free, no key → `check_identifier_format` (does not check that the company exists).
 
 ## e-Factura (RO CIUS-RO, UBL 2.1)
 
