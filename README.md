@@ -175,6 +175,27 @@ This repo is also a plugin following the [Open Plugins / Agent Plugins](https://
 curl -H "x-api-key: htr_demo" https://api.howtoromania.io/v1/company/14399840
 ```
 
+### Gemini CLI
+
+Install from this repository, then enter your API key when prompted (or set `HTR_API_KEY` first):
+
+```bash
+gemini extensions install https://github.com/howtoromania/howtoromania-mcp
+```
+
+Get a key:
+
+```bash
+curl -X POST https://api.howtoromania.io/v1/keys \
+  -H "content-type: application/json" \
+  -d '{"email":"you@example.com","accept_terms":true}'
+# → {"apiKey":"htr_..."}   (shown once)
+```
+
+After install you can change the key with `gemini extensions config howtoromania`. Restart the CLI session, then ask something like: "Look up CUI 14399840."
+
+The extension connects to the hosted MCP endpoint `https://api.howtoromania.io/mcp` and sends `Authorization: Bearer <key>`. Nothing to build or run locally.
+
 ## Example prompts
 
 - "Before we sign with supplier RO14399840, check it's active, VAT-registered, and summarize risk flags." → `get_company_risk_report` (30)

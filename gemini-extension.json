@@ -1,0 +1,23 @@
+{
+  "name": "howtoromania",
+  "version": "0.5.0",
+  "description": "Romanian public data over remote MCP: companies (ANAF, ONRC), financials, court cases, KYB risk, e-Factura and legislation in force.",
+  "contextFileName": "GEMINI.md",
+  "settings": [
+    {
+      "name": "API Key",
+      "description": "Your HowToRomania API key. Get one: POST https://api.howtoromania.io/v1/keys with JSON {\"email\":\"you@example.com\",\"accept_terms\":true}. Sent as Authorization: Bearer.",
+      "envVar": "HTR_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "howtoromania": {
+      "url": "https://api.howtoromania.io/mcp",
+      "type": "http",
+      "headers": {
+        "Authorization": "Bearer ${HTR_API_KEY}"
+      }
+    }
+  }
+}
